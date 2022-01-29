@@ -1,0 +1,24 @@
+<a href="#">Add Student</a>
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>First Name</td>
+        <td>Last Name</td>
+        <td>Description</td>
+        <td>Enabled</td>
+        <td>Level</td>
+        <td>Actions</td>
+    </tr>
+    {% for s in tabStudent %}
+        <tr>
+            <td>{{ s.id }}</td>
+            <td>{{ s.first_name }}</td>
+            <td>{{ s.last_name }}</td>
+            <td>{{ s.description }}</td>
+            <td>{{ s.enabled }}</td>
+            <td><a href="#">Update</a>
+                <a href="#">Remove</a>
+                <a href="#">Show</a></td>
+        </tr>
+    {% endfor %}
+</table>

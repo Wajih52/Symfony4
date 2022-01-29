@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Student;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,8 +18,12 @@ class StudentController extends AbstractController
             'controller_name' => 'StudentController',
         ]);
     }
-    public function () {
-        return $this->render('student/listEtudiant.html.twig',array(tabStudent''))
+    /**
+     * @Route("/listStudent", name="listStudent")
+     */
+    public function listStudent () {
+        $students=$this->getDoctrine()->getRepository(Student::class)->findAll();
+        return $this->render('student/listEtudiant.html.twig',array('tabStudent'=>$students));
 
     }
 }

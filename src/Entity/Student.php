@@ -15,7 +15,7 @@ class Student
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $ref;
+    private $id;
 
     /**
      * @ORM\Column(type="string", length=50)
