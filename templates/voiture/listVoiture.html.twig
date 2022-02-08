@@ -1,0 +1,12 @@
+<h1>Add Voiture</h1><hr>
+{% for Voiture in tabCar %}
+    id ::{{ Voiture.id }}
+marque :: {{ Voiture.marque }}
+categorie :: {{ Voiture.categorie }}
+gamme :: {{ Voiture.gamme }}
+prix :: {{ Voiture.prix }}
+    <a href="{{ path('showVoiture',{'id':Voiture.id}) }}">Show More</a>
+    <a href="{{ path('deleteVoiture',{'id':Voiture.id}) }}">Delete</a>
+    <br>
+
+{% endfor %}
