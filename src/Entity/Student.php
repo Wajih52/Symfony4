@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StudentRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Student
      * @ORM\Column(type="boolean")
      */
     private $Enabled;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Classroom::class, mappedBy="Student")
+     */
+    private $classrooms;
+
+    public function __construct()
+    {
+        $this->classrooms = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +98,33 @@ class Student
     public function setEnabled(bool $Enabled): self
     {
         $this->Enabled = $Enabled;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Classroom[]
+     */
+    public function getClassrooms(): Collection
+    {
+        return $this->classrooms;
+    }
+
+    public function addClassroom(Classroom $classroom): self
+    {
+        if (!$this->classrooms->contains($classroom)) {
+            $this->classrooms[] = $classroom;
+            $classroom->addStudent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeClassroom(Classroom $classroom): self
+    {
+        if ($this->classrooms->removeElement($classroom)) {
+            $classroom->removeStudent($this);
+        }
 
         return $this;
     }
